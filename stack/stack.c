@@ -43,7 +43,11 @@ void stack_pop(stack s)
 
     node delete_node = s->first;
     s->first = s->first->next;
+    
+    free(delete_node->data); // o funcion encargada de destruir el Nodo por completo
     free(delete_node);
+    delete_node = NULL;
+    
     --s->size;
 }
 
