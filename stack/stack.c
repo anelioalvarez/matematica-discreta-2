@@ -43,7 +43,11 @@ void stack_pop(stack s)
 
     node delete_node = s->first;
     s->first = s->first->next;
+
+    free(delete_node->data); // o funcion encargada de destruir el Nodo por completo
     free(delete_node);
+    delete_node = NULL;
+
     --s->size;
 }
 
@@ -74,4 +78,22 @@ void *stack_front(stack s)
 {
     assert(s != NULL && !stack_is_empty(s));
     return s->first->data;
+}
+
+void *stack_to_array(stack s)
+{
+    assert(s != NULL);
+    if (stack_is_empty(s)) return NULL;
+
+    u32 size = s->size;
+    void **array = (void **)calloc(size, sizeof(void *));
+
+    node current = s->first;
+    for (u32 i = 0u; i < size; ++i) {
+        assert(current != NULL);
+        array[i] = current->data;
+        current = current->next;
+    }
+
+    return array;
 }

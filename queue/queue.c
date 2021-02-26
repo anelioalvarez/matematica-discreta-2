@@ -59,7 +59,10 @@ void queue_dequeue(queue q)
         q->first = q->first->next;
     }
 
-    free(delete_node); // o funcion encargada de destruir el Nodo por completo
+    free(delete_node->data); // o funcion encargada de destruir el Nodo por completo
+    free(delete_node);
+    delete_node = NULL;
+    
     --q->size;
 }
 

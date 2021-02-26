@@ -20,4 +20,6 @@ u32 stack_len(stack s);
 
 void *stack_front(stack s);
 
+void *stack_to_array(stack s);
+
 #endif /* STACK */
