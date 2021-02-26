@@ -20,5 +20,6 @@ u32 queue_len(queue q);
 
 void *queue_front(queue q);
 
+void *queue_to_array(queue q);
 
 #endif /* QUEUE */

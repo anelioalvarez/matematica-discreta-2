@@ -94,3 +94,21 @@ void *queue_front(queue q)
     assert(q != NULL && !queue_is_empty(q));
     return q->first->data;
 }
+
+void *queue_to_array(queue q)
+{
+    assert(q != NULL);
+    if (queue_is_empty(q)) return NULL;
+
+    u32 size = q->size;
+    void **array = (void **)calloc(size, sizeof(void *));
+
+    node current = q->first;
+    for (u32 i = 0u; i < size; ++i) {
+        assert(current != NULL);
+        array[i] = current->data;
+        current = current->next;
+    }
+
+    return array;
+}
